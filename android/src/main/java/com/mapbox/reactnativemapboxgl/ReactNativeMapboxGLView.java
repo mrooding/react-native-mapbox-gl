@@ -182,20 +182,20 @@ public class ReactNativeMapboxGLView extends RelativeLayout implements
         _map.setOnInfoWindowClickListener(this);
 
         // Create annotations
-        for (Map.Entry<String, RNMGLAnnotationOptions> entry : _annotationOptions.entrySet()) {
-            Annotation annotation = entry.getValue().addToMap(_map);
-            _annotations.put(entry.getKey(), annotation);
-            _annotationIdsToName.put(annotation.getId(), entry.getKey());
-        }
-        _annotationOptions.clear();
+//        for (Map.Entry<String, RNMGLAnnotationOptions> entry : _annotationOptions.entrySet()) {
+//            Annotation annotation = entry.getValue().addToMap(_map);
+//            _annotations.put(entry.getKey(), annotation);
+//            _annotationIdsToName.put(annotation.getId(), entry.getKey());
+//        }
+//        _annotationOptions.clear();
 
-//        MarkerOptions markerOptions = new MarkerOptions();
         MarkerViewOptions markerOptions = new MarkerViewOptions();
         markerOptions.position(new LatLng(52.216090, 5.186793));
 //        marker.rotation(45);
 //        marker.icon(customIcon);
 //
         Marker marker = _map.addMarker(markerOptions);
+        Log.d("door2door", "ICON: ".concat(marker.getIcon().getId()));
         Log.d("door2door", "ICON: ".concat(marker.getIcon().getId()));
     }
 
