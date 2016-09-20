@@ -1,5 +1,6 @@
 package com.mapbox.reactnativemapboxgl;
 
+import android.util.Log;
 import android.content.Context;
 import android.graphics.PointF;
 import android.hardware.GeomagneticField;
@@ -15,8 +16,10 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.mapbox.mapboxsdk.annotations.Annotation;
+import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.annotations.MarkerViewOptions;
 import com.mapbox.mapboxsdk.annotations.PolygonOptions;
 import com.mapbox.mapboxsdk.annotations.PolylineOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
@@ -185,6 +188,15 @@ public class ReactNativeMapboxGLView extends RelativeLayout implements
             _annotationIdsToName.put(annotation.getId(), entry.getKey());
         }
         _annotationOptions.clear();
+
+//        MarkerOptions markerOptions = new MarkerOptions();
+        MarkerViewOptions markerOptions = new MarkerViewOptions();
+        markerOptions.position(new LatLng(52.216090, 5.186793));
+//        marker.rotation(45);
+//        marker.icon(customIcon);
+//
+        Marker marker = _map.addMarker(markerOptions);
+        Log.d("door2door", "ICON: ".concat(marker.getIcon().getId()));
     }
 
     private void destroyMapView() {
