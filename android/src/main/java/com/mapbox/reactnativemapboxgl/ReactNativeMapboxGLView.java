@@ -182,12 +182,12 @@ public class ReactNativeMapboxGLView extends RelativeLayout implements
         _map.setOnInfoWindowClickListener(this);
 
         // Create annotations
-//        for (Map.Entry<String, RNMGLAnnotationOptions> entry : _annotationOptions.entrySet()) {
-//            Annotation annotation = entry.getValue().addToMap(_map);
-//            _annotations.put(entry.getKey(), annotation);
-//            _annotationIdsToName.put(annotation.getId(), entry.getKey());
-//        }
-//        _annotationOptions.clear();
+        for (Map.Entry<String, RNMGLAnnotationOptions> entry : _annotationOptions.entrySet()) {
+            Annotation annotation = entry.getValue().addToMap(_map);
+            _annotations.put(entry.getKey(), annotation);
+            _annotationIdsToName.put(annotation.getId(), entry.getKey());
+        }
+        _annotationOptions.clear();
 
         MarkerOptions markerOptions2 = new MarkerOptions();
         markerOptions2.position(new LatLng(52.218090, 5.186793));
@@ -202,7 +202,17 @@ public class ReactNativeMapboxGLView extends RelativeLayout implements
 //        marker.icon(customIcon);
 //
         Marker marker = _map.addMarker(markerOptions);
-        Log.d("door2door", "ICON: ".concat(marker.getIcon().getId()));
+
+        // Due to a bug, we need to force a relayout on the _mapView
+        _handler.post(new Runnable() {
+            @Override
+            public void run() {
+                _mapView.measure(
+                        View.MeasureSpec.makeMeasureSpec(_mapView.getMeasuredWidth(), View.MeasureSpec.EXACTLY),
+                        View.MeasureSpec.makeMeasureSpec(_mapView.getMeasuredHeight(), View.MeasureSpec.EXACTLY));
+                _mapView.layout(_mapView.getLeft(), _mapView.getTop(), _mapView.getRight(), _mapView.getBottom());
+            }
+        });
     }
 
     private void destroyMapView() {
