@@ -191,11 +191,13 @@ public class ReactNativeMapboxGLView extends RelativeLayout implements
 
         MarkerOptions markerOptions2 = new MarkerOptions();
         markerOptions2.position(new LatLng(52.218090, 5.186793));
+        markerOptions2.title("MarkerOptions");
+        markerOptions2.snippet("test marker");
         _map.addMarker(markerOptions2);
 
         MarkerViewOptions markerOptions = new MarkerViewOptions();
         markerOptions.position(new LatLng(52.216090, 5.186793));
-        markerOptions.title("test");
+        markerOptions.title("MarkerViewOptions");
 //        marker.rotation(45);
 //        marker.icon(customIcon);
 //
