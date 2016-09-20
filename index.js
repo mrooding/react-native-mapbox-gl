@@ -236,10 +236,10 @@ class MapView extends Component {
   _onRegionDidChange(event: Event) {
     if (this.props.onRegionDidChange) this.props.onRegionDidChange(event.nativeEvent.src);
   }
-  _onRegionWillChange = (event: Event) => {
+  _onRegionWillChange(event: Event) {
     if (this.props.onRegionWillChange) this.props.onRegionWillChange(event.nativeEvent.src);
   }
-  _onOpenAnnotation = (event: Event) => {
+  _onOpenAnnotation(event: Event) {
     if (this.props.onOpenAnnotation) this.props.onOpenAnnotation(event.nativeEvent.src);
   }
   _onRightAnnotationTapped(event: Event) {
